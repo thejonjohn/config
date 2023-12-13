@@ -1,0 +1,8 @@
+# zsh
+export PROMPT="%n@%m %~ $ "
+
+# bash
+export PS1='\u@\h \w \$ '
+
+# tcsh
+set prompt = '%n@%m %~ $ '
