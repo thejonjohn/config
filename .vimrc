@@ -43,7 +43,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/grep.vim'
 Plug 'vim-scripts/CSApprox'
-Plug 'Raimondi/delimitMate'
+"Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
@@ -583,10 +583,12 @@ nmap ga <Plug>(EasyAlign)
 "*****************************************************************************
 "*****************************************************************************
 
-"" Include user's local vim config
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
+"" Other Remaps
+nnoremap <CR> :noh<CR>
+nnoremap + :res +1<CR>
+nnoremap - :res -1<CR>
+nnoremap ( :vertical resize -1<CR>
+nnoremap ) :vertical resize +1<CR>
 
 "*****************************************************************************
 "" Convenience variables
