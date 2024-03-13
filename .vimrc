@@ -57,7 +57,7 @@ Plug 'tpope/vim-rhubarb' " required by fugitive to :GBrowse
 Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/vim-easy-align'
-
+Plug 'ervandew/supertab'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -295,8 +295,8 @@ let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 50
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*node_modules/
-nnoremap <silent> <C-m> :NERDTreeFind<CR>
 nnoremap <silent> <C-n> :NERDTreeToggle<CR>
+nnoremap <silent> <leader>n :NERDTreeFind<CR>
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
@@ -400,16 +400,16 @@ let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/
 
 " The Silver Searcher
 if executable('ag')
-  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+  let $FZF_DEFAULT_COMMAND = 'ag --noaffinity --hidden --ignore .git -g ""'
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
 " ripgrep
-if executable('rg')
-  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-  set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-endif
+" if executable('rg')
+"   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+"   set grepprg=rg\ --vimgrep
+"   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+" endif
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
@@ -519,6 +519,7 @@ let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "0"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
+let g:jedi#use_splits_not_buffers = "left"
 
 " ale
 :call extend(g:ale_linters, {
@@ -584,16 +585,21 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+" Signify - start it disabled
+let g:signify_disable_by_default = 1
 
 "*****************************************************************************
 "*****************************************************************************
 
 "" Other Remaps
+" clear search with Enter
 nnoremap <CR> :noh<CR>
-nnoremap + :res +1<CR>
-nnoremap - :res -1<CR>
-nnoremap ( :vertical resize -1<CR>
-nnoremap ) :vertical resize +1<CR>
+
+" Resize Panes
+nnoremap + <c-w>+
+nnoremap - <c-w>-
+nnoremap ( <c-w><
+nnoremap ) <c-w>>
 
 "*****************************************************************************
 "" Convenience variables
