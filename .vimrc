@@ -55,6 +55,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'editor-bootstrap/vim-bootstrap-updater'
 Plug 'tpope/vim-rhubarb' " required by fugitive to :GBrowse
 Plug 'altercation/vim-colors-solarized'
+Plug 'sainnhe/sonokai'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/vim-easy-align'
 Plug 'ervandew/supertab'
@@ -640,3 +641,12 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
+
+" Colors
+set background=dark
+let g:solarized_contrast = 'high'
+let g:solarized_termtrans = 1
+let g:sonokai_style = 'default'
+let g:sonokai_better_performance = 1
+let g:sonokai_transparent_background = 0
+colorscheme sonokai
